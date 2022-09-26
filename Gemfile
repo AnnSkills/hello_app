@@ -65,11 +65,11 @@ group :development do
   # gem "spring"
 end
 
+gem "pg", :group => :production
+
 # gem :production do
 #   gem "pg"
 # end
-
-gem "pg", :group => :production
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
