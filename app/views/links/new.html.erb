@@ -1,0 +1,23 @@
+<h>Create a new link</h>
+
+<% if @link.errors.any? %>
+  <h2>Preventing errors</h2>
+  <ul>
+  <% @link.errors.full_messages.each do |msg| %>
+   <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_with  scope: :link, url: links_path, local: true do |f|%>
+<p>
+  <%= f.label :link %></br>
+  <%= f.text_field :link %>
+</p>
+  <p>
+    <%= f.label :description %></br>
+    <%= f.text_area :description %>
+  </p>
+
+  <p><%=f.submit %></p>
+<%end%>
