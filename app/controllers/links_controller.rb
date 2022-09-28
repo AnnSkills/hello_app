@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
+  before_action :set_link, only: [:show, :edit, :update, :destroy]
   def show
-    @link = Link.find(params[:id])
   end
 
   def index
@@ -12,10 +12,9 @@ class LinksController < ApplicationController
   end
 
   def edit
-    @link = Link.find(params[:id])
   end
   def create
-    @link = Link.new(params.require(:link).permit(:link, :description))
+    @link = Link.new(link_params)
     if @link.save
       flash[:notice] = "Link was created successfully."
     redirect_to @link
@@ -25,8 +24,7 @@ class LinksController < ApplicationController
   end
 
   def update
-    @link = Link.find(params[:id])
-    if @link.update(params.require(:link).permit(:link, :description))
+    if @link.update(link_params)
       flash[:notice] = "Link edited"
       redirect_to @link
     else
@@ -35,8 +33,18 @@ class LinksController < ApplicationController
   end
 
   def destroy
-    @link = Link.find(params[:id])
     @link.destroy
     redirect_to links_path
   end
+
+  private
+
+  def set_link
+    @link = Link.find(params[:id])
+  end
+
+  def link_params
+    params.require(:link).permit(:link, :description)
+  end
+
 end

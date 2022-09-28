@@ -2,3 +2,9 @@
 
 <p>Link: <%=@link.link %></p>
 <p>Desc: <%=@link.description %></p>
+
+<p>
+  <%= button_to 'Edit link', edit_link_path(@link), method: :get%> |
+  <%= button_to 'Delete link', @link, method: :delete, form: { data: { action: "click -> links#delete" }} %> |
+  <%= link_to 'Listing link', links_path %>
+</p>

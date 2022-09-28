@@ -1,21 +1,26 @@
 <h1>Links index page</h1>
 
-<table>
+<table class="table">
   <thead>
   <tr>
-    <th>Link</th>
-    <th>Description</th>
-    <th>Actions</th>
+    <th scope="col">Link</th>
+    <th scope="col" >Description</th>
+    <th scope="col" colspan="3">Actions</th>
   </tr>
   </thead>
-  <tbody>
+  <tbody class="table-group-divider">
   <% @links.each do |link| %>
     <tr>
       <td><%= link.link %></td>
       <td><%= link.description %></td>
       <td><%= link_to 'Show', link_path(link) %></td>
-      <td><%= link_to 'Delete', link_path(link), method: :delete %></td>
+      <td><%= link_to 'Edit', edit_link_path(link) %></td>
+      <td><%= button_to 'Delete', link, :confirm => "Are you sure?", method: :delete %></td>
     </tr>
   <% end %>
   </tbody>
 </table>
+
+<p>
+  <%= link_to 'Create new link', new_link_path %>
+</p>

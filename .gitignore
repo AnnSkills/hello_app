@@ -36,3 +36,4 @@
 
 .idea
 .gitattributes
+node_modules
