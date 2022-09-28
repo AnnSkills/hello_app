@@ -10,7 +10,7 @@ gem "rails", "~> 7.0.4"
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+gem "pg"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -43,10 +43,13 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+#
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker', '~> 4.2.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -54,6 +57,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "sqlite3", "~> 1.4"
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
@@ -63,6 +67,14 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+
+gem "pg", :group => :production
+
+# gem :production do
+#   gem "pg"
+# end
+
+gem 'rails_12factor', :group => :production
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
