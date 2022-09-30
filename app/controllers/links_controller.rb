@@ -15,6 +15,7 @@ class LinksController < ApplicationController
   end
   def create
     @link = Link.new(link_params)
+    @link.user = User.first
     if @link.save
       flash[:notice] = "Link was created successfully."
     redirect_to @link
