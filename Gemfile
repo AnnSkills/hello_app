@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 #git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.2"
+ruby "3.1.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
@@ -54,7 +54,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "sqlite3", "~> 1.4"
+  gem "sqlite3"
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
