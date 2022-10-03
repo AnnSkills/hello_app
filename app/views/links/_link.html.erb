@@ -4,7 +4,10 @@
   </div>
   <% @links.each do |link| %>
     <div class="card-body">
-      <%= link.link %>  by <%= link.user.username if link.user %>
+      <% if link.user %>
+      by <%= link_to link.user.username, user_path(link.user)%>
+      <% end %>
+      <%= link.link %>
       <h5 class="card-title"><%= link.description %></h5>
       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
      <%= link_to 'Show', link_path(link), class: "btn btn-primary" %>

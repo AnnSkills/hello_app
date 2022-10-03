@@ -1,11 +1,17 @@
 <h1>Show links</h1>
+<div class="card text-center">
+  <div class="card-header">
+    Featured
+  </div>
 
-<p>Link: <%=@link.link %></p>
-<p>Desc: <%=@link.description %></p>
-
-<p>
-  <%= button_to 'Edit link', edit_link_path(@link), method: :get%> |
-  <%= button_to 'Delete link', @link, method: :delete, form: { data: { action: "click -> links#delete" }} %> |
-  <%= link_to 'Listing link', links_path %>
-  by <%= @link.user.username if @link.user %>
-</p>
+    <div class="card-body">
+      <%= @link.link %>
+      <h5 class="card-title"><%= @link.description %></h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <%= link_to 'Show', link_path(@link), class: "btn btn-primary" %>
+      <%= link_to 'Edit',edit_link_path(@link), class: "btn btn-primary" %>
+      <%= button_to 'Delete', @link, :confirm => "Are you sure?", method: :delete , class: "btn btn-primary" %>
+    </div>
+    <div class="card-footer text-muted"><%= time_ago_in_words(@link.created_at) %> ago</div>
+</div>
+<%= link_to 'Listing links', links_path, class: "btn btn-primary"%>

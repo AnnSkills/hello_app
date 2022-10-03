@@ -3,13 +3,13 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 3)
   end
 
   # GET /users/1 or /users/1.json
   def show
     @user = User.find(params[:id])
-    @links = @user.links
+    @links = @user.links.paginate(page: params[:page], per_page: 3)
   end
 
   # GET /users/new
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "You account information was updated"
-      redirect_to links_path
+      redirect_to @user
     else
       render 'users/edit'
     end
