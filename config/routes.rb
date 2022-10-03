@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users, except: [:new]
   resources :links
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'about', to: 'pages#about'
   get 'signup', to: 'users#new'
-  post 'users', to: 'users#create'
+
 end
