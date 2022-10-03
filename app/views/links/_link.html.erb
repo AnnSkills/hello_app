@@ -1,0 +1,18 @@
+<div class="card text-center">
+  <div class="card-header">
+    Featured
+  </div>
+  <% @links.each do |link| %>
+    <div class="card-body">
+      <%= link.link %>  by <%= link.user.username if link.user %>
+      <h5 class="card-title"><%= link.description %></h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <div><%= link_to 'Show', link_path(link), class: "btn btn-primary" %>
+        <%= link_to 'Edit', edit_link_path(link), class: "btn btn-primary" %>
+        <%= button_to 'Delete', link, :confirm => "Are you sure?", method: :delete , class: "btn btn-primary" %>
+      </div>
+    </div>
+    <div class="card-footer text-muted">cool</div>
+  <% end %>
+
+</div>
