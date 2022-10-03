@@ -61,7 +61,7 @@
                 <div class="d-flex justify-content-center">
                   <button type="button"
                           class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
-                    <%= f.submit "Sign up", class: "btn btn-outline-light btn-lg" %></button>
+                    <%= f.submit(@user.new_record? ? "Sign up" : "Update account", class: "btn btn-outline-light btn-lg") %></button>
                 </div>
               <% end %>
                 <p class="text-center text-muted mt-5 mb-0">Have already an account?
