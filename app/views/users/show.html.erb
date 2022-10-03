@@ -1,8 +1,4 @@
 <p style="color: green"><%= notice %></p>
 <h1><%= @user.username %> profile</h1>
-
-<%= gravatar_for @user , size: 200%>
-
-<h1><%= @links %> profile</h1>
-
+<%= gravatar_for(@user , size: 200)%>
 <%= render 'links/link' %>
