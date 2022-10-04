@@ -1,5 +1,7 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, only: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   def show
   end
 
@@ -48,4 +50,10 @@ class LinksController < ApplicationController
     params.require(:link).permit(:link, :description)
   end
 
+  def require_same_user
+    if current_user != @link.user && !current_user.admin?
+      flash[:alert] = "You can only edit or delete your own link"
+      redirect_to @link
+    end
+  end
 end

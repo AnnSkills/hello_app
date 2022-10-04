@@ -24,9 +24,13 @@
           <% if logged_in? %>
               <li>
                 <p><%= link_to current_user.username, user_path(current_user),  class: "nav-item"%> user</p>
+               <p><%= "(Admin)" if current_user.admin? %> Profile</p>
               </li>
               <li>
               <%= button_to "Log out", logout_path, method: :delete,  class: "nav-item"%>
+            </li>
+            <li>
+              <%= button_to "Delete profile", user_path(current_user), method: :delete,  class: "nav-item text-danger", data: {confirm: "deleted user"}%>
             </li>
             <li>
               <a><%= link_to "Users list", users_path, class: "nav-item" %></a>

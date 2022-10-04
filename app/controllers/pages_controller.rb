@@ -3,6 +3,5 @@ class PagesController < ApplicationController
     redirect_to links_path if logged_in?
   end
   def about
-
   end
 end

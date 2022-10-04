@@ -50,9 +50,14 @@
       <%= link_to gravatar_for(user, size: 150), user %>
       <p class="card-text"><%= pluralize(user.links.count, "link") %></p>
       <div><%= link_to 'Show profile', user, class: "btn btn-primary" %>
-        <% if logged_in? and user == current_user %>
-        <%= link_to 'Edit', edit_user_path(user), class: "btn btn-primary" %>
+        <% if logged_in? %>  #DON'T SHOWN(
+          <% if user == current_user %>
+            <%= link_to 'Edit', edit_user_path(user), class: "btn btn-primary" %>
           <% end %>
+          <% if current_user.admin? %>
+            <% button_to 'Delete', user_path(user), method: :delete,  class: "btn btn-primary"%>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="card-footer text-muted"><%= time_ago_in_words(user.created_at) %> ago</div>
