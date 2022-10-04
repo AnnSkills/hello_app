@@ -11,9 +11,10 @@
       <h5 class="card-title"><%= link.description %></h5>
       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
      <%= link_to 'Show', link_path(link), class: "btn btn-primary" %>
+      <% if logged_in? && link.user == current_user %>
         <%= link_to 'Edit', edit_link_path(link), class: "btn btn-primary" %>
         <%= button_to 'Delete', link, :confirm => "Are you sure?", method: :delete , class: "btn btn-primary" %>
-
+      <% end %>
     </div>
     <div class="card-footer text-muted"><%= time_ago_in_words(link.created_at) %> ago</div>
   <% end %>

@@ -8,7 +8,7 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Log in the account</h2>
 
-              <%= form_with(scope: :session, url: login_path) do |f| %>
+              <%= form_with(scope: :session, url: login_path, local: true) do |f| %>
                 <form>
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example3cg">Your Email</label>

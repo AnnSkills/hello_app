@@ -15,40 +15,15 @@
 
   <nav class="navbar navbar-expand-lg bg-light">
     <div id="logo" class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a>Users&Links</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-
-
-        <% if logged_in? %>
-          <li class="nav-item">
-            <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to 'Log in', login_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Sign up', signup_path, class: "nav-link" %>
-          </li>
-        <% end %>
-
-
-
-
-
         <ul class="navbar-nav">
           <% if logged_in? %>
-          <%= link_to current_user.username, user_path(current_user),  class: "nav-item"%>
-        <% end %>
-          <% if logged_in? %>
             <li>
-              <%= link_to current_user.username, user_path(current_user),  class: "nav-item"%>
+              <p><%= link_to current_user.username, user_path(current_user),  class: "nav-item"%> user</p>
             </li>
             <li>
               <%= button_to "Log out", logout_path, method: :delete,  class: "nav-item"%>
@@ -65,9 +40,6 @@
             <a ><%= link_to "Registration", signup_path, class: "nav-item" %></a>
           </li>
           <li>
-            <%= button_to "Log out", logout_path, method: :delete,  class: "nav-item"%>
-          </li>
-          <li>
             <a><%= link_to "Users list", users_path, class: "nav-item" %></a>
           </li>
 
@@ -78,7 +50,6 @@
       </div>
     </div>
   </nav>
-
   <%= render 'layouts/messages' %>
   <%= yield %>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
