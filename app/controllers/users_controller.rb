@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users or /users.json
   def index
@@ -8,7 +8,6 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    @user = User.find(params[:id])
     @links = @user.links.paginate(page: params[:page], per_page: 3)
   end
 
@@ -19,15 +18,17 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
   end
 
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       flash[:notice] = "Registration is successfully for User #{@user.username}"
       redirect_to links_path
+    else
+      render 'new'
     end
     # respond_to do |format|
     #   if @user.save
@@ -42,7 +43,6 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "You account information was updated"
       redirect_to @user
@@ -63,7 +63,6 @@ class UsersController < ApplicationController
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy
-
     respond_to do |format|
       format.html { redirect_to users_url, notice: "User was successfully destroyed." }
       format.json { head :no_content }

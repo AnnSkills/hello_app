@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link href= "custom.css" rel="stylesheet" >
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -21,19 +20,57 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
+
+
+        <% if logged_in? %>
+          <li class="nav-item">
+            <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Log in', login_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign up', signup_path, class: "nav-link" %>
+          </li>
+        <% end %>
+
+
+
+
+
         <ul class="navbar-nav">
+          <% if logged_in? %>
+          <%= link_to current_user.username, user_path(current_user),  class: "nav-item"%>
+        <% end %>
+          <% if logged_in? %>
+            <li>
+              <%= link_to current_user.username, user_path(current_user),  class: "nav-item"%>
+            </li>
+            <li>
+              <%= button_to "Log out", logout_path, method: :delete,  class: "nav-item"%>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <a ><%= link_to "Log In", login_path, class: "nav-item" %></a>
+            </li>
+            <li class="nav-item">
+              <a ><%= link_to "Sign Up", signup_path, class: "nav-item" %></a>
+            </li>
+          <% end %>
           <li class="nav-item">
             <a ><%= link_to "Registration", signup_path, class: "nav-item" %></a>
           </li>
-          <li class="nav-item">
-            <a ><%= link_to "Log In", login_path, class: "nav-item" %></a>
+          <li>
+            <%= button_to "Log out", logout_path, method: :delete,  class: "nav-item"%>
           </li>
           <li>
             <a><%= link_to "Users list", users_path, class: "nav-item" %></a>
           </li>
-          <li>
-            <a><%= link_to "Log out", ll_path, method: :delete%></a>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link"><%= link_to "Home", root_path, class: "nav-item" %></a>
           </li>
