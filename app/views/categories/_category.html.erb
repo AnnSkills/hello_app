@@ -8,6 +8,7 @@
         by <%= link_to current_user.username, user_path(current_user)%>
       <% end %>
       <h5 class="card-title"><%= category.name %></h5>
+      <p class="card-text"><%= pluralize(category.links.count, "link") %></p>
       <%= link_to 'Link to Category', category_path(category), class: "btn btn-primary" %>
     </div>
     <div class="card-footer text-muted"><%= time_ago_in_words(category.created_at) %> ago</div>

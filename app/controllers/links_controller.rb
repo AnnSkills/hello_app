@@ -47,7 +47,7 @@ class LinksController < ApplicationController
   end
 
   def link_params
-    params.require(:link).permit(:link, :description)
+    params.require(:link).permit(:link, :description, category_ids: [])
   end
 
   def require_same_user

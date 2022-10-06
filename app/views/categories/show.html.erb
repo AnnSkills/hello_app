@@ -1,1 +1,19 @@
 <h1>Name of category: <%= @category.name %></h1>
+
+<div class="card text-center">
+  <div class="card-header">
+    Category
+  </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= @category.name %></h5>
+      <% if logged_in? && current_user.admin? %>
+        <%= link_to 'Edit category name', edit_category_path(@category), class: "btn btn-primary" %>
+      <% end %>
+
+      <p class="card-text"><%= pluralize(@category.links.count, "link") %></p>
+      <%= link_to 'Link to Category', category_path(@category), class: "btn btn-primary" %>
+    </div>
+    <div class="card-footer text-muted"><%= time_ago_in_words(@category.created_at) %> ago</div>
+
+
+</div>
